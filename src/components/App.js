@@ -234,9 +234,6 @@ function App() {
           onCardDelete={handleCardDelete}
           handleSignOut={handleSignOut}
         />
-        <Route exact path="/">
-          {loggedIn ? <Redirect to="/feed" /> : <Redirect to="/signin" />}
-        </Route>
         <Route path="/*">
           {loggedIn ? <Redirect to="/feed" /> : <Redirect to="/signin" />}
         </Route>
