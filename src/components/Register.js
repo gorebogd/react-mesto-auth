@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "./Header.js";
-import InfoTooltip from "./InfoTooltip.js";
 
 function Register(props) {
   const [userData, setUserData] = useState({
@@ -65,13 +64,6 @@ function Register(props) {
           </div>
         </div>
       </div>
-
-      <InfoTooltip
-        signUpResult={props.signUpResult}
-        isOpen={props.isSignUpPopupOpen}
-        onClose={props.onClose}
-        resultText={props.resultText}
-      />
     </>
   );
 }

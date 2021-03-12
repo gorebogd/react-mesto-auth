@@ -4,7 +4,7 @@ import resultFail from '../images/signup-popup-result-fail.svg';
 import resultSuccess from '../images/signup-popup-result-success.svg';
 
 function InfoTooltip(props) {
-  let resultText = props.resultText;
+  const resultText = props.resultText;
   let resultImg;
 
   if (props.signUpResult === true) {

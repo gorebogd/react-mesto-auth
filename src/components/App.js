@@ -12,6 +12,8 @@ import * as auth from "../utils/auth.js";
 import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
+import InfoTooltip from "./InfoTooltip.js";
+
 
 function App() {
   const [currentUser, setCurrentUser] = useState({});
@@ -22,7 +24,6 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({ email: "" });
 
   useEffect(() => {
     api
@@ -139,9 +140,6 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          setUserData({
-            email,
-          });
           setLoggedIn(true);
           history.push("/feed");
         }
@@ -186,9 +184,8 @@ function App() {
         .getLoginInfo(jwt)
         .then((res) => {
           if (res) {
-            setUserData({
-              email: res.email,
-            });
+            console.log(res)
+            localStorage.setItem("email", res.data.email);
             setLoggedIn(true);
             history.push("/feed");
           }
@@ -199,14 +196,11 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleSignOut() {
-    localStorage.removeItem("jwt");
-    setUserData({
-      email: '',
-    });
+    localStorage.clear();
     setLoggedIn(false);
   }
 
@@ -221,7 +215,8 @@ function App() {
           <Register
             handleSignUp={handleSignUp}
             signUpResult={signUpResult}
-            isSignUpPopup Open={isSignUpPopupOpen}
+            isSignUpPopup
+            Open={isSignUpPopupOpen}
             onClose={closeSignUpModal}
             resultText={resultText}
           />
@@ -230,7 +225,6 @@ function App() {
           path="/feed"
           component={Main}
           loggedIn={loggedIn}
-          userData={userData}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
           onEditAvatar={handleEditAvatarClick}
@@ -267,6 +261,12 @@ function App() {
         isOpen={isImagePopupOpen}
         onClose={closeAllPopups}
         card={selectedCard}
+      />
+      <InfoTooltip
+        signUpResult={signUpResult}
+        isOpen={isSignUpPopupOpen}
+        onClose={closeSignUpModal}
+        resultText={resultText}
       />
     </CurrentUserContext.Provider>
   );

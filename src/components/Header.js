@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import logo from "../images/logo.svg";
 
 function Header(props) {
+  const userEmail = localStorage.getItem('email');
+
   let headerLink;
   if (props.page === "signin") {
     headerLink = (
@@ -19,7 +21,7 @@ function Header(props) {
   } else if (props.page === "feed") {
     headerLink = (
       <nav className="header__nav">
-        <p className="header__info">{props.userData.email}</p>
+        <p className="header__info">{userEmail}</p>
         <Link
           to="/login"
           className="header__link header__link_signout"
