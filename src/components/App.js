@@ -137,7 +137,6 @@ function App() {
     auth
       .signIn(email, password)
       .then((res) => {
-        console.log(res)
         if (res.token) {
           localStorage.setItem("jwt", res.token);
           setUserData({
@@ -200,6 +199,7 @@ function App() {
 
   useEffect(() => {
     tokenCheck();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleSignOut() {
@@ -219,9 +219,9 @@ function App() {
 
         <Route exact path="/signup">
           <Register
-            handleSignup={handleSignUp}
-            signupResult={signUpResult}
-            isSignupModalOpen={isSignUpPopupOpen}
+            handleSignUp={handleSignUp}
+            signUpResult={signUpResult}
+            isSignUpPopup Open={isSignUpPopupOpen}
             onClose={closeSignUpModal}
             resultText={resultText}
           />
