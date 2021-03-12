@@ -7,7 +7,7 @@ function InfoTooltip(props) {
   let resultText = props.resultText;
   let resultImg;
 
-  if (props.signupResult === true) {
+  if (props.signUpResult === true) {
     resultImg = resultSuccess;
   } else {
     resultImg = resultFail;

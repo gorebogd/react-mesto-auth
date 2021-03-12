@@ -21,7 +21,7 @@ function Register(props) {
     evt.preventDefault();
 
     const { email, password } = userData;
-    props.handleSignup(email, password);
+    props.handleSignUp(email, password);
   };
 
   return (
@@ -67,7 +67,7 @@ function Register(props) {
       </div>
 
       <InfoTooltip
-        signupResult={props.signUpResult}
+        signUpResult={props.signUpResult}
         isOpen={props.isSignUpPopupOpen}
         onClose={props.onClose}
         resultText={props.resultText}
