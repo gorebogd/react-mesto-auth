@@ -140,6 +140,7 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
+          localStorage.setItem("email", email);
           setLoggedIn(true);
           history.push("/feed");
         }
@@ -184,8 +185,7 @@ function App() {
         .getLoginInfo(jwt)
         .then((res) => {
           if (res) {
-            console.log(res)
-            localStorage.setItem("email", res.data.email);
+            // localStorage.setItem("email", res.data.email);
             setLoggedIn(true);
             history.push("/feed");
           }
