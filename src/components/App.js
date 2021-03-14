@@ -185,7 +185,6 @@ function App() {
         .getLoginInfo(jwt)
         .then((res) => {
           if (res) {
-            // localStorage.setItem("email", res.data.email);
             setLoggedIn(true);
             history.push("/feed");
           }
